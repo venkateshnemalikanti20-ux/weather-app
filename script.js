@@ -34,43 +34,54 @@ function clearWeather() {
     feels.textContent = "Feels Like: --";
     description.textContent = "Description: --";
 }
-async function getSuggestions(city){
-	let url = `http://localhost:3000/suggestions?city=${city}`;
-	let response = await fetch(url);
+async function getSuggestions(city) {
+    try {
+        let url = `https://weather-app-r342.onrender.com/suggestions?city=${city}`;
 
-if (!response.ok) {
-    console.log("Unable to fetch suggestions");
-    return;
-}
+        let response = await fetch(url);
 
-let data = await response.json();
-	if(input.value.trim() === ""){
+        if (!response.ok) {
+            console.log("Unable to fetch suggestions");
+            return;
+        }
+
+        let data = await response.json();
+
+        if (input.value.trim() === "") {
+            suggestions.innerHTML = "";
+            return;
+        }
+
         suggestions.innerHTML = "";
-        return;
+
+        if (data.features.length === 0) {
+            console.log("No cities found");
+            return;
+        }
+
+        data.features.forEach(function(place) {
+
+            let div = document.createElement("div");
+
+            div.textContent = place.properties.formatted;
+
+            div.classList.add("suggestion-item");
+
+            div.addEventListener("click", function() {
+
+                input.value = place.properties.city;
+                suggestions.innerHTML = "";
+                getweather(place.properties.city);
+
+            });
+
+            suggestions.appendChild(div);
+
+        });
+
+    } catch (error) {
+        console.log("Server Error");
     }
-	suggestions.innerHTML = ""
-	if(data.features.length === 0){
-        console.log("No cities found");
-        return;
-    }
-
-    data.features.forEach(function(place){
-
-        let div = document.createElement("div");
-
-        div.textContent = place.properties.formatted;
-
-        div.classList.add("suggestion-item");
-		div.addEventListener("click",function(){
-			input.value = place.properties.city
-			suggestions.innerHTML = ""
-			getweather(place.properties.city)
-		})
-
-        suggestions.appendChild(div);
-
-    });
-
 }
 async function getweather(city) {
 
@@ -78,8 +89,7 @@ async function getweather(city) {
 
     try {
 
-        let response = await fetch(`http://localhost:3000/weather?city=${city}`);
-
+        let response = await fetch(`https://weather-app-r342.onrender.com/weather?city=${city}`);
         if (!response.ok) {
             cityname.textContent = "City not found!";
             return;
