@@ -93,3 +93,22 @@
 		background-position:0% 50%;
 	}
 }
+
+.sunny{
+	background:linear-gradient(135deg,#56CCF2,#2F80ED)
+}
+.cloudy{
+	background:linear-gradient(135deg,#757F9A,#D7DDE8)
+}
+.rainy{
+	background:linear-gradient(135deg,#314755,#26A0DA)
+}
+.thunder{
+	background:linear-gradient(135deg,#232526,#414345)
+}
+.snow{
+	background:linear-gradient(135deg,#E6DADA,#274046)
+}
+.night{
+	background:linear-gradient(135deg,#0F2027,#203A43,#2C5364))
+}
