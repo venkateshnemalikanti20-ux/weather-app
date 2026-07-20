@@ -8,7 +8,6 @@ let feels = document.getElementById("feels")
 let description = document.getElementById("description")
 let login = localStorage.getItem("login")
 let suggestions = document.getElementById("suggestions")
-let apiKey ="735d8b1078874f3c8eef3cf48d7350ff"
 button.addEventListener("click",function(){
 	let city = input.value.trim()
 	if(city === ""){
@@ -36,9 +35,15 @@ function clearWeather() {
     description.textContent = "Description: --";
 }
 async function getSuggestions(city){
-	let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=${apiKey}`;
-	let response = await fetch(url)
-	let data = await response.json()
+	let url = `http://localhost:3000/suggestions?city=${city}`;
+	let response = await fetch(url);
+
+if (!response.ok) {
+    console.log("Unable to fetch suggestions");
+    return;
+}
+
+let data = await response.json();
 	if(input.value.trim() === ""){
         suggestions.innerHTML = "";
         return;
@@ -67,21 +72,31 @@ async function getSuggestions(city){
     });
 
 }
-async function getweather(city){
-	let apikey = "c744a74802428239f3dd32bd7b44e934"
-	let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
-    console.log(url)
-	cityname.textContent="Loading..."
-	let response = await fetch(url)
-	if(!response.ok){
-		cityname.textContent = "City not found!"
-		return
-	}
-	let data = await response.json()
-	cityname.textContent = "City: "+data.name
-	tempature.textContent = "Temparature: "+data.main.temp+" °C"
-	humidity.textContent = "Humidity: "+data.main.humidity+"%"
-	wind.textContent = "Wind: "+data.wind.speed+" m/s"
-	feels.textContent = "Feels Like: "+data.main.feels_like+" °C"
-	description.textContent = "Description: "+data.weather[0].description
+async function getweather(city) {
+
+    cityname.textContent = "Loading...";
+
+    try {
+
+        let response = await fetch(`http://localhost:3000/weather?city=${city}`);
+
+        if (!response.ok) {
+            cityname.textContent = "City not found!";
+            return;
+        }
+
+        let data = await response.json();
+
+        cityname.textContent = "City: " + data.city;
+        tempature.textContent = "Temperature: " + data.temperature + " °C";
+        humidity.textContent = "Humidity: " + data.humidity + "%";
+        wind.textContent = "Wind: " + data.wind + " m/s";
+        feels.textContent = "Feels Like: " + data.feelsLike + " °C";
+        description.textContent = "Description: " + data.description;
+
+    } catch (error) {
+
+        cityname.textContent = "Server Error";
+
+    }
 }
