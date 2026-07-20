@@ -96,6 +96,7 @@ async function getweather(city) {
         }
 
         let data = await response.json();
+		changeBackground(data.description)
 
         cityname.textContent = "City: " + data.city;
         tempature.textContent = "Temperature: " + data.temperature + " °C";
@@ -109,4 +110,33 @@ async function getweather(city) {
         cityname.textContent = "Server Error";
 
     }
+}
+function changeBackground(weather){
+	document.body.classList.remove(
+	"sunny",
+	"cloudy",
+	"rainy",
+	"thunder",
+	"snow",
+	"night"
+	)
+	weather = weather.toLowerCase()
+	if(weather.includes("clear")){
+		document.body.classList.add("sunny")
+	}
+	else if(weather.includes("cloud")){
+		document.body.classList.add("cloudy")
+	}
+	else if(weather.includes("thunder")){
+		document.body.classList.add("thunder")
+	}
+	else if(weather.includes("rain")){
+		document.body.classList.add("rainy")
+	}
+	else if(weather.includes("snow")){
+		document.body.classList.add("snow")
+	}
+	else{
+		document.body.classList.add(background)
+	}
 }
