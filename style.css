@@ -113,9 +113,9 @@
 	background:linear-gradient(135deg,#0F2027,#203A43,#2C5364))
 }
 .news-card{
-	border:None;
+	border:none;
 	border-radius:18px;
-	overflow:hideden;
+	overflow:hidden;
 	transition:0.4s ease;
 	box-shadow:0 8px 25px rgba(0,0,0,0.5);
 }
