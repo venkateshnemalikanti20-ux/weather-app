@@ -50,7 +50,7 @@ app.get("/news",async(req,res) => {
 		params:{
 			q:"weather",
 			language:"en",
-			pagesize:5,
+			pagesize:6,
 			apiKey:process.env.NEWS_API_KEY
 		}
 		})
