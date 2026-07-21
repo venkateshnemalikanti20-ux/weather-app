@@ -143,5 +143,46 @@ function changeBackground(weather){
 async function getWeatherNews(){
 	const response = await fetch("https://weather-app-r342.onrender.com/news")
     const articles = await response.json()	
+	const newsContainer = document.getElementById("newsContainer")
+	newsContainer.innerHTML = "" 
+	articles.forEach(article => {
+
+    newsContainer.innerHTML += `
+    
+    <div class="col-lg-4 col-md-6 col-12 mb-4">
+
+        <div class="card news-card h-100">
+
+            <img
+                src="${article.urlToImage}"
+                class="card-img-top"
+                alt="Weather News">
+
+            <div class="card-body">
+
+                <h5 class="card-title">
+                    ${article.title}
+                </h5>
+
+                <p class="card-text">
+                    ${article.description}
+                </p>
+
+                <a
+                    href="${article.url}"
+                    target="_blank"
+                    class="btn btn-primary">
+                    Read More
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+});
 }
 getWeatherNews()
