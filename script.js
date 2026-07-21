@@ -140,3 +140,8 @@ function changeBackground(weather){
 		document.body.classList.add(background)
 	}
 }
+async function getWeatherNews(){
+	const response = await fetch("https://weather-app-r342.onrender.com/news")
+    const articles = await response.json()	
+}
+getWeatherNews()

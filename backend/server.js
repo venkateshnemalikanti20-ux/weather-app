@@ -44,6 +44,24 @@ app.get("/weather", async (req, res) => {
     })
 }
 })
+app.get("/news",async(req,res) => {
+	try{
+		const response = await axios.get("https://newsapi.org/v2/everything",{
+		params:{
+			q:"weather",
+			language:"en",
+			pagesize:5,
+			apiKey:process.env.NEWS_API_KEY
+		}
+		})
+		res.json(response.data.articles)
+	}
+	catch(err){
+		res.status(500).json({
+			err:"Fail to fetch weather News"
+		})
+	}
+})
 
 app.get("/suggestions", async (req, res) => {
     const city = req.query.city;

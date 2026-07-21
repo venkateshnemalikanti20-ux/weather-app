@@ -112,3 +112,27 @@
 .night{
 	background:linear-gradient(135deg,#0F2027,#203A43,#2C5364))
 }
+.news-card{
+	border:None;
+	border-radius:18px;
+	overflow:hideden;
+	transition:0.4s ease;
+	box-shadow:0 8px 25px rgba(0,0,0,0.5);
+}
+.news-card:hover{
+	transform:translateY(-8px);
+	box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+.news-card img{
+	height:220px;
+	object-fit:cover;
+	transition:0.4s;
+}
+.news-card:hover img{
+	transform:scale(1.08);
+}
+.news-card .btn{
+	border-radius:30px;
+	font-weight:600;
+	padding:8px 20px;
+}
