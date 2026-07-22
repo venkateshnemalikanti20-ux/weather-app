@@ -122,3 +122,7 @@
 body{
 	transition:background 0.6s ease;
 }
+#networkStatus{
+    font-size:18px;
+    padding:10px;
+}

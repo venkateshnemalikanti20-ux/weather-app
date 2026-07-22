@@ -18,6 +18,11 @@ button.addEventListener("click",function(){
 		suggestions.innerHTML = ""
 	}
 })
+input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        button.click();
+    }
+});
 input.addEventListener("input",function(){
 	let city = input.value.trim()
 	console.log(city.length)
@@ -85,6 +90,10 @@ async function getSuggestions(city) {
     }
 }
 async function getweather(city) {
+	if (!navigator.onLine) {
+    cityname.textContent = "No Internet Connection";
+	return
+} 
 
     cityname.textContent = "Loading...";
 
@@ -153,3 +162,23 @@ if ("serviceWorker" in navigator) {
             });
     });
 }
+const networkStatus = document.getElementById("networkStatus");
+
+function updateNetworkStatus() {
+    if (navigator.onLine) {
+        networkStatus.textContent = "🟢 You are online";
+        networkStatus.style.color = "#90EE90";
+        button.disabled = false;
+        input.disabled = false;
+    } else {
+        networkStatus.textContent = "🔴 No Internet Connection";
+        networkStatus.style.color = "#FF6B6B";
+        button.disabled = true;
+        input.disabled = true;
+    }
+}
+
+window.addEventListener("online", updateNetworkStatus);
+window.addEventListener("offline", updateNetworkStatus);
+
+updateNetworkStatus();
