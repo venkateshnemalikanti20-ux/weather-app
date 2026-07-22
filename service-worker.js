@@ -22,6 +22,13 @@ self.addEventListener("install", (event) => {
 
 
 self.addEventListener("fetch", (event) => {
+  const url = new URL(event.request.url);
+
+  // Don't intercept requests to external websites
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);
