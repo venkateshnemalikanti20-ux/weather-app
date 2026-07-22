@@ -154,7 +154,7 @@ async function getWeatherNews(){
         <div class="card news-card h-100">
 
             <img
-                src="${article.urlToImage}"
+                src="${article.image}"
                 class="card-img-top"
                 alt="Weather News">
 
