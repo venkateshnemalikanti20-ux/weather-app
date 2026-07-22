@@ -15,6 +15,7 @@ button.addEventListener("click",function(){
 	}
 	else{
 		getweather(city)
+		suggestions.innerHTML = ""
 	}
 })
 input.addEventListener("input",function(){
@@ -106,8 +107,8 @@ async function getweather(city) {
         description.textContent = "Description: " + data.description;
 
     } catch (error) {
-
-        cityname.textContent = "Server Error";
+        alert("Unable to connect. Please check your internet connection.");
+        cityname.textContent = "Search for a city.";
 
     }
 }
@@ -137,55 +138,9 @@ function changeBackground(weather){
 		document.body.classList.add("snow")
 	}
 	else{
-		document.body.classList.add(background)
+		document.body.classList.add("background")
 	}
 }
-async function getWeatherNews(){
-	const response = await fetch("https://weather-app-r342.onrender.com/news")
-    const articles = await response.json()	
-	const newsContainer = document.getElementById("newsContainer")
-	newsContainer.innerHTML = "" 
-	articles.forEach(article => {
-      console.log(article)
-    newsContainer.innerHTML += `
-    
-    <div class="col-lg-4 col-md-6 col-12 mb-4">
-
-        <div class="card news-card h-100">
-
-            <img
-                src="${article.image}"
-                class="card-img-top"
-                alt="Weather News">
-
-            <div class="card-body">
-
-                <h5 class="card-title">
-                    ${article.title}
-                </h5>
-
-                <p class="card-text">
-                    ${article.description}
-                </p>
-
-                <a
-                    href="${article.url}"
-                    target="_blank"
-                    class="btn btn-primary">
-                    Read More
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    `;
-
-});
-}
-getWeatherNews()
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker

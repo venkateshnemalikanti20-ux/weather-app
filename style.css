@@ -11,7 +11,7 @@
 	flex-direction:column;
 	align-items:flex-start;
 	width:100%;
-	max-width:380px;
+	max-width:420px;
 	padding:20px;
 	gap:8px;
 	background:rgba(255,255,255,0.2);
@@ -95,22 +95,22 @@
 }
 
 .sunny{
-	background:linear-gradient(135deg,#56CCF2,#2F80ED)
+	background:linear-gradient(135deg,#56CCF2,#2F80ED);
 }
 .cloudy{
-	background:linear-gradient(135deg,#757F9A,#D7DDE8)
+	background:linear-gradient(135deg,#757F9A,#D7DDE8);
 }
 .rainy{
-	background:linear-gradient(135deg,#314755,#26A0DA)
+	background:linear-gradient(135deg,#314755,#26A0DA);
 }
 .thunder{
-	background:linear-gradient(135deg,#232526,#414345)
+	background:linear-gradient(135deg,#232526,#414345);
 }
 .snow{
-	background:linear-gradient(135deg,#E6DADA,#274046)
+	background:linear-gradient(135deg,#E6DADA,#274046);
 }
 .night{
-	background:linear-gradient(135deg,#0F2027,#203A43,#2C5364))
+	background:linear-gradient(135deg,#0F2027,#203A43,#2C5364);
 }
 .news-card{
 	border:none;
@@ -119,20 +119,6 @@
 	transition:0.4s ease;
 	box-shadow:0 8px 25px rgba(0,0,0,0.5);
 }
-.news-card:hover{
-	transform:translateY(-8px);
-	box-shadow:0 15px 35px rgba(0,0,0,0.3);
-}
-.news-card img{
-	height:220px;
-	object-fit:cover;
-	transition:0.4s;
-}
-.news-card:hover img{
-	transform:scale(1.08);
-}
-.news-card .btn{
-	border-radius:30px;
-	font-weight:600;
-	padding:8px 20px;
+body{
+	transition:background 0.6s ease;
 }
