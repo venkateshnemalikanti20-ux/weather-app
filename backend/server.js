@@ -46,12 +46,13 @@ app.get("/weather", async (req, res) => {
 })
 app.get("/news",async(req,res) => {
 	try{
-		const response = await axios.get("https://newsapi.org/v2/everything",{
+		const response = await axios.get("https://gnews.io/api/v4/search",{
 		params:{
 			q:"weather",
 			language:"en",
-			pagesize:6,
-			apiKey:process.env.NEWS_API_KEY
+			max:6,
+			sortby:"publishedAt",
+			apikey:process.env.GNEWS_API_KEY
 		}
 		})
 		res.json(response.data.articles)
