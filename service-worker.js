@@ -1,4 +1,4 @@
- const CACHE_NAME = "skycast-v5";
+ const CACHE_NAME = "skycast-v6";
 
 const urlsToCache = [
   "./",
