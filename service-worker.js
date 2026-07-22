@@ -1,4 +1,4 @@
- const CACHE_NAME = "skycast-v4";
+ const CACHE_NAME = "skycast-v5";
 
 const urlsToCache = [
   "./",
@@ -12,6 +12,7 @@ const urlsToCache = [
 
 
 self.addEventListener("install", (event) => {
+	self.skipWaiting()
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("Caching app files...");
@@ -22,15 +23,18 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
+    Promise.all([
+      clients.claim(),
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cache) => {
+            if (cache !== CACHE_NAME) {
+              return caches.delete(cache);
+            }
+          })
+        );
+      }),
+    ])
   );
 });
 
