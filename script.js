@@ -146,7 +146,7 @@ async function getWeatherNews(){
 	const newsContainer = document.getElementById("newsContainer")
 	newsContainer.innerHTML = "" 
 	articles.forEach(article => {
-
+      console.log(article)
     newsContainer.innerHTML += `
     
     <div class="col-lg-4 col-md-6 col-12 mb-4">
