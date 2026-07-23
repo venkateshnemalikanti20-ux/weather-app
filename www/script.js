@@ -116,10 +116,13 @@ async function getweather(city) {
         description.textContent = "Description: " + data.description;
 
     } catch (error) {
-        alert("Unable to connect. Please check your internet connection.");
-        cityname.textContent = "Search for a city.";
-
-    }
+    cityname.textContent = "🔴 No Internet Connection";
+    tempature.textContent = "--°C";
+    humidity.textContent = "Humidity: --";
+    wind.textContent = "Wind: --";
+    feels.textContent = "Feels Like: --";
+    description.textContent = "Description: --";
+}
 }
 function changeBackground(weather){
 	document.body.classList.remove(
@@ -162,23 +165,3 @@ if ("serviceWorker" in navigator) {
             });
     });
 }
-const networkStatus = document.getElementById("networkStatus");
-
-function updateNetworkStatus() {
-    if (navigator.onLine) {
-        networkStatus.textContent = "🟢 You are online";
-        networkStatus.style.color = "#90EE90";
-        button.disabled = false;
-        input.disabled = false;
-    } else {
-        networkStatus.textContent = "🔴 No Internet Connection";
-        networkStatus.style.color = "#FF6B6B";
-        button.disabled = true;
-        input.disabled = true;
-    }
-}
-
-window.addEventListener("online", updateNetworkStatus);
-window.addEventListener("offline", updateNetworkStatus);
-
-updateNetworkStatus();
