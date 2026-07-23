@@ -1,5 +1,8 @@
 🌤️ SkyCast - Weather Application
 SkyCast is a modern weather application that provides real-time weather information for any city worldwide. It offers a clean user interface, city suggestions, dynamic weather backgrounds, offline detection, and Android APK support using Capacitor.
+
+
+
 🚀 Features
 🌍 Search weather by city name
 📍 Auto city suggestions
@@ -13,6 +16,8 @@ SkyCast is a modern weather application that provides real-time weather informat
 📶 Internet connectivity detection
 📦 Android APK generated using Capacitor
 🔒 Secure backend using Node.js and Express.js
+
+
 
 
 Weather_Project/
@@ -32,6 +37,9 @@ Weather_Project/
 ├── android/
 ├── resources/
 └── capacitor.config.json
+
+
+
 
 
 👨‍💻 Author
